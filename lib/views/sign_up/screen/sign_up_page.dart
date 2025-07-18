@@ -7,52 +7,52 @@ import 'package:voca_boom_app/views/sign_up/widget/sign_up_title.dart';
 import '../../../core/resources/height_manager.dart';
 import '../../../core/resources/padding_manager.dart';
 import '../../../core/resources/utils.dart';
-import '../../../login.dart';
+import '../../login/screen/login_page.dart';
 
 // 👇 استيراد صفحة Home (تأكد من المسار الصحيح)
 import '../../../home.dart'; // غيّر المسار لو موجود في مكان تاني
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+   SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsManager.whiteColor,
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: PaddingManager.p24,
-          vertical: PaddingManager.p60,
+        padding:   EdgeInsets.symmetric(
+          horizontal: PaddingManager.pw24,
+          vertical: PaddingManager.ph60,
         ),
         child: Column(
           children: [
             Image.asset("assets/images/logo.png", height: 100, width: 100),
-            const SizedBox(height: HeightManager.h40),
+              SizedBox(height: HeightManager.h40),
             SignUpTitle(),
-            const SizedBox(height: HeightManager.h40),
+              SizedBox(height: HeightManager.h40),
 
             _buildTextField(
               hintText: 'Enter Your First Name',
               labelText: 'First Name',
             ),
-            const SizedBox(height: HeightManager.h20),
+              SizedBox(height: HeightManager.h20),
             _buildTextField(
               hintText: 'Enter Your Last Name',
               labelText: 'Last Name',
             ),
-            const SizedBox(height: HeightManager.h20),
+              SizedBox(height: HeightManager.h20),
             _buildTextField(
               hintText: 'Enter your email address',
               labelText: 'Email',
               keyboardType: TextInputType.emailAddress,
             ),
-            const SizedBox(height: HeightManager.h20),
+             SizedBox(height: HeightManager.h20),
             _buildTextField(
               hintText: 'Enter Your Phone',
               labelText: 'Phone',
               keyboardType: TextInputType.phone,
             ),
-            const SizedBox(height: HeightManager.h20),
+             SizedBox(height: HeightManager.h20),
 
             TextField(
               obscureText: true,
@@ -65,25 +65,25 @@ class SignUpPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: BorderSide.none,
                 ),
-                suffixIcon: const Icon(Icons.visibility_off, color: Colors.grey),
-                contentPadding: const EdgeInsets.symmetric(
+                suffixIcon:  Icon(Icons.visibility_off, color: Colors.grey),
+                contentPadding:  EdgeInsets.symmetric(
                   vertical: 15.0,
                   horizontal: 20.0,
                 ),
               ),
             ),
-            const SizedBox(height: HeightManager.h10),
+             SizedBox(height: HeightManager.h10),
 
             Align(
               alignment: Alignment.centerLeft,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                   Text(
                     'Please add all necessary characters to create safe password.',
                     style: TextStyle(color: Colors.black54),
                   ),
-                  const SizedBox(height: HeightManager.h5),
+                   SizedBox(height: HeightManager.h5),
                   _buildRequirementRow('One uppercase character.'),
                   _buildRequirementRow('One lowercase character.'),
                   _buildRequirementRow('One special character.'),
@@ -91,7 +91,7 @@ class SignUpPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: HeightManager.h20),
+             SizedBox(height: HeightManager.h20),
 
             TextField(
               obscureText: true,
@@ -104,18 +104,18 @@ class SignUpPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: BorderSide.none,
                 ),
-                suffixIcon: const Icon(Icons.visibility_off, color: Colors.grey),
-                contentPadding: const EdgeInsets.symmetric(
+                suffixIcon:  Icon(Icons.visibility_off, color: Colors.grey),
+                contentPadding:  EdgeInsets.symmetric(
                   vertical: 15.0,
                   horizontal: 20.0,
                 ),
               ),
             ),
-            const SizedBox(height: HeightManager.h30),
+             SizedBox(height: HeightManager.h30),
 
             Align(
               alignment: Alignment.centerLeft,
-              child: const Text(
+              child:  Text(
                 'Upload image For Your Profile',
                 style: TextStyle(
                   fontSize: 16,
@@ -124,7 +124,7 @@ class SignUpPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: HeightManager.h10),
+             SizedBox(height: HeightManager.h10),
 
             Container(
               height: HeightManager.h150,
@@ -137,9 +137,9 @@ class SignUpPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.cloud_upload, size: 50, color: Colors.grey),
-                  const SizedBox(height: HeightManager.h8),
-                  const Text(
+                   Icon(Icons.cloud_upload, size: 50, color: Colors.grey),
+                   SizedBox(height: HeightManager.h8),
+                   Text(
                     'Select file',
                     style: TextStyle(
                       color: Colors.blue,
@@ -149,7 +149,7 @@ class SignUpPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: HeightManager.h30),
+              SizedBox(height: HeightManager.h30),
 
             // ✅ زر التسجيل مع التنقل
             ElevatedButton(
@@ -157,29 +157,29 @@ class SignUpPage extends StatelessWidget {
                 // انتقال مباشر إلى صفحة Home
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const Home()),
+                  MaterialPageRoute(builder: (context) =>  Home()),
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF4a29dc),
-                padding: const EdgeInsets.symmetric(vertical: 15.0),
+                backgroundColor:  Color(0xFF4a29dc),
+                padding:  EdgeInsets.symmetric(vertical: 15.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                minimumSize: const Size(double.infinity, 50),
+                minimumSize:  Size(double.infinity, 50),
               ),
-              child: const Text(
+              child:  Text(
                 'Sign Up',
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
 
-            const SizedBox(height: 30),
+             SizedBox(height: 30),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                 Text(
                   "Have an account already?",
                   style: TextStyle(color: Colors.black54),
                 ),
@@ -187,10 +187,10 @@ class SignUpPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const LoginPage()),
+                      MaterialPageRoute(builder: (context) =>  LoginPage()),
                     );
                   },
-                  child: const Text(
+                  child:  Text(
                     'Log In',
                     style: TextStyle(
                       color: Color(0xFF4a29dc),
@@ -222,7 +222,7 @@ class SignUpPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide.none,
         ),
-        contentPadding: const EdgeInsets.symmetric(
+        contentPadding:  EdgeInsets.symmetric(
           vertical: 15.0,
           horizontal: 20.0,
         ),
@@ -233,12 +233,12 @@ class SignUpPage extends StatelessWidget {
 
   Widget _buildRequirementRow(String text) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2.0),
+      padding:  EdgeInsets.symmetric(vertical: 2.0),
       child: Row(
         children: [
           Icon(Icons.circle, size: 8, color: Colors.green[700]),
-          const SizedBox(width: 8.0),
-          Text(text, style: const TextStyle(color: Colors.black54)),
+           SizedBox(width: 8.0),
+          Text(text, style:  TextStyle(color: Colors.black54)),
         ],
       ),
     );

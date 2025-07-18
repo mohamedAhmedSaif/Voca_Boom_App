@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:voca_boom_app/charecter.dart';
+import 'package:voca_boom_app/simple.dart';
 
+
+import 'card.dart';
 void main() {
-  runApp(const student());
+  runApp(const StudentApp());
 }
 
-class student extends StatelessWidget {
-  const student({super.key});
+class StudentApp extends StatelessWidget {
+  const StudentApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Hide the debug banner
+      debugShowCheckedModeBanner: false,
       title: 'VocaBoom Courses',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -26,19 +30,16 @@ class CourseSelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Define colors from your design
-    const Color primaryBlue = Color(0xFF334EFF); // Dominant blue for cards
-    const Color accentPurple = Color(0xFF6A4CEE); // Button background
-    const Color secondaryBlue = Color(0xFF4C9EEE); // For background gradient
+    const Color primaryBlue = Color(0xFF334EFF);
+    const Color accentPurple = Color(0xFF6A4CEE);
 
-    // Dummy data for courses
     final List<Map<String, dynamic>> courses = [
       {'icon': Icons.book_outlined, 'name': 'Course 1', 'price': 'Free'},
       {'icon': Icons.mic_outlined, 'name': 'Course 2', 'price': 'Free'},
-      {'icon': Icons.menu_book_sharp, 'name': 'Course 3', 'price': '50.0 pounds'},
-      {'icon': Icons.account_balance_wallet_outlined, 'name': 'Course 4', 'price': '70.0 pounds'},
-      {'icon': Icons.book, 'name': 'Course 5', 'price': '70.5 pounds'},
-      {'icon': Icons.chat_bubble_outline, 'name': 'Course 6', 'price': '79.5 pounds'},
+      {'icon': Icons.menu_book_sharp, 'name': 'Course 3', 'price': '1000.0 pounds'},
+      {'icon': Icons.account_balance_wallet_outlined, 'name': 'Course 4', 'price': '1500.0 pounds'},
+      {'icon': Icons.book, 'name': 'Course 5', 'price': '1200.5 pounds'},
+      {'icon': Icons.chat_bubble_outline, 'name': 'Course 6', 'price': '2000.5 pounds'},
     ];
 
     return Scaffold(
@@ -48,27 +49,24 @@ class CourseSelectionScreen extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF6A4CEE), // Top gradient color (slightly purplish)
-              Color(0xFF4C9EEE), // Bottom gradient color (bluish)
+              Color(0xFF6A4CEE),
+              Color(0xFF4C9EEE),
             ],
           ),
         ),
         child: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // --- Top App Bar Area (Logo, Title, etc.) ---
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Center(
-                      child: Image.asset(
-                        'assets/images/logo.png', // Replace with your combined logo asset
-                        height: 80, // Adjust height as needed
-                      ),
-                    ),
+                        child: Image.asset(
+                          "assets/images/logo.png",
+                          height: 100,
+                          width: 100,
+                        )),
                     const SizedBox(height: 20),
                     const Text(
                       'Choose Your Course',
@@ -81,9 +79,7 @@ class CourseSelectionScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 20), // Space before the list
-
-              // --- Course List (The main controls) ---
+              const SizedBox(height: 20),
               Expanded(
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -97,6 +93,7 @@ class CourseSelectionScreen extends StatelessWidget {
                       price: course['price'],
                       primaryBlue: primaryBlue,
                       accentPurple: accentPurple,
+                      index: index,
                     );
                   },
                 ),
@@ -108,7 +105,6 @@ class CourseSelectionScreen extends StatelessWidget {
     );
   }
 
-  // Helper method to build each course list item
   Widget _buildCourseListItem({
     required BuildContext context,
     required IconData icon,
@@ -116,25 +112,25 @@ class CourseSelectionScreen extends StatelessWidget {
     required String price,
     required Color primaryBlue,
     required Color accentPurple,
+    required int index,
   }) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 15), // Space between items
+      margin: const EdgeInsets.only(bottom: 15),
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       decoration: BoxDecoration(
-        color: primaryBlue, // The distinct blue color for each card
+        color: primaryBlue,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
-            spreadRadius: 1,
             blurRadius: 5,
-            offset: const Offset(0, 3), // Adds a subtle shadow
+            offset: const Offset(0, 3),
           ),
         ],
       ),
       child: Row(
         children: [
-          Icon(icon, color: Colors.white, size: 30), // Course icon
+          Icon(icon, color: Colors.white, size: 30),
           const SizedBox(width: 15),
           Expanded(
             child: Text(
@@ -147,44 +143,49 @@ class CourseSelectionScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          // --- Action Button (Free / Buy Now) ---
           ElevatedButton(
             onPressed: () {
-              // Action based on price
               if (price == 'Free') {
-                print('$courseName - Free Course Selected!');
-                // Implement navigation or course activation for free courses
+                if (index == 0) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => LettersPage()),
+                  );
+                } else if (index == 1) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const SimpleSentencesPage()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('$courseName opened!')),
+                  );
+                }
               } else {
-                print('$courseName - Buy Now for $price!');
-                // Implement payment flow for paid courses
+                // ✅ فتح صفحة الدفع
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const PaymentMethodPage()),
+                );
               }
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: accentPurple, // Button background color
-              foregroundColor: Colors.white, // Text color
+              backgroundColor: accentPurple,
+              foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10), // Rounded button corners
+                borderRadius: BorderRadius.circular(10),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              minimumSize: const Size(0, 40), // Ensure button has a min height
             ),
             child: Text(
               price == 'Free' ? 'Free' : 'Buy Now',
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
           if (price != 'Free') ...[
-            const SizedBox(width: 5), // Space between button and price
+            const SizedBox(width: 5),
             Text(
               price,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
+              style: const TextStyle(color: Colors.white, fontSize: 16),
             ),
           ],
         ],
