@@ -12,7 +12,7 @@ class AppTextField extends StatelessWidget {
     required this.keyboardType,
     this.controller,
     this.validator,
-    this.visible = true,
+    this.visible = true, this.suffixIcon, this.onChanged,
   });
 
   final String? hintText;
@@ -21,18 +21,24 @@ class AppTextField extends StatelessWidget {
   final TextEditingController? controller;
   final FormFieldValidator<String?>? validator;
   final bool visible;
+  final Widget? suffixIcon;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChanged,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       onTapOutside: (event) {
         FocusScope.of(context).unfocus();
       },
       obscuringCharacter: "*",
-      obscureText:!visible ,
+      obscureText: !visible,
       validator: validator,
+
       controller: controller,
       decoration: InputDecoration(
+        suffixIcon: suffixIcon,
         hintText: hintText,
         hintStyle: TextStyle(
           fontSize: FontSizeManger.f12,

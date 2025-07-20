@@ -1,5 +1,14 @@
 // payment_method_page.dart
 import 'package:flutter/material.dart';
+import 'package:voca_boom_app/core/resources/colors_manager.dart';
+import 'package:voca_boom_app/core/resources/font_manager.dart';
+import 'package:voca_boom_app/core/resources/height_manager.dart';
+import 'package:voca_boom_app/core/resources/utils.dart';
+import 'package:voca_boom_app/core/widgets/app_logo_widget.dart';
+
+import 'core/resources/border_radius_manager.dart';
+import 'core/resources/width_manager.dart';
+import 'core/widgets/Image.dart';
 
 class PaymentMethodPage extends StatefulWidget {
   const PaymentMethodPage({super.key});
@@ -10,11 +19,11 @@ class PaymentMethodPage extends StatefulWidget {
 
 class _PaymentMethodPageState extends State<PaymentMethodPage> {
   // تعريف الألوان بناءً على تصميمك
-  static const Color _primaryPurple = Color(0xFF6A4CEE); // لون الشعار وزر الدفع
-  static const Color _secondaryBlue = Color(0xFF4C9EEE); // لون الشعار
-  static const Color _textColor = Colors.black; // لون النص الأساسي
-  static const Color _textFieldFillColor = Color(0xFFE0E0E0); // لون خلفية حقول الإدخال
-  static const Color _blueButtonColor = Color(0xFF4C4CEE); // لون زر "Pay Now"
+  static const Color _primaryPurple = ColorsManager.blueColor; // لون الشعار وزر الدفع
+  static const Color _secondaryBlue = ColorsManager.primaryColor; // لون الشعار
+  static const Color _textColor = ColorsManager.blackColor; // لون النص الأساسي
+  static const Color _textFieldFillColor = ColorsManager.light1GreyColor; // لون خلفية حقول الإدخال
+  static const Color _blueButtonColor = ColorsManager.primaryColor; // لون زر "Pay Now"
 
   // متحكمات حقول النص (TextEditingControllers) للوصول إلى قيم المدخلات
   final TextEditingController _cardholderNameController = TextEditingController();
@@ -41,12 +50,12 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorsManager.whiteColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: ColorsManager.whiteColor,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: ColorsManager.blackColor),
           onPressed: () {
             Navigator.pop(context); // 🔙 يرجع للصفحة اللي قبله
           },
@@ -54,100 +63,100 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
       ),// خلفية بيضاء للصفحة
       body: SafeArea(
         child: SingleChildScrollView( // SingleChildScrollView للسماح بالتمرير إذا كانت الشاشة صغيرة
-          padding: const EdgeInsets.all(25.0),
+          padding: EdgeInsets.all(HeightManager.h20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center, // محاذاة العناصر في المنتصف أفقياً
             children: [
               // --- شعار VocaBoom ---
               Center(
-                child: Image.asset(
-                  'assets/images/logo.png', // تأكد من وجود الشعار في مجلد assets
-                  height: 100,
-                  width: 100,
-                ),
+                child: AppLogoWidget()
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: HeightManager.h20),
 
               // --- عنوان "select a payment method" ---
               Text(
-                'select a payment method',
+                Utils.kselectapaymentmethod,
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: FontSizeManger.f22,
                   fontWeight: FontWeight.bold,
                   color: _textColor,
                 ),
               ),
-              const SizedBox(height: 30),
+               SizedBox(height: HeightManager.h20),
 
               // --- خيارات طرق الدفع (InstaPay, Visa, Mastercard) ---
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround, // توزيع الخيارات بالتساوي
-                children: [
-                  _buildPaymentOption(
-                    context,
-                    'assets/images/image card1.png', // استبدل بمسار شعار Instapay
-                    'InstaPay',
-                  ),
-                  _buildPaymentOption(
-                    context,
-                    'assets/images/image card2.png', // استبدل بمسار شعار Visa
-                    'Visa',
-                  ),
-                  _buildPaymentOption(
-                    context,
-                    'assets/images/image card3.png', // استبدل بمسار شعار Mastercard
-                    'Mastercard',
-                    isImage: false, // هذا الخيار هو صورة بطاقة كاملة وليس مجرد شعار
-                  ),
-                ],
+              Container(
+                height: HeightManager.h100,
+                child: ListView(
+
+                  scrollDirection: Axis.horizontal,
+                   children: [
+                    _buildPaymentOption(
+                      context,
+                     ImageAssets.instpay, // استبدل بمسار شعار Instapay
+                      Utils.kInstaPay,
+                    ),
+                    _buildPaymentOption(
+                      context,
+                     ImageAssets.visa, // استبدل بمسار شعار Visa
+                      Utils.kvisa,
+                    ),
+                    _buildPaymentOption(
+                      context,
+                      ImageAssets.mastercard, // استبدل بمسار شعار Mastercard
+                     Utils.kMastercard,
+                      isImage: false, // هذا الخيار هو صورة بطاقة كاملة وليس مجرد شعار
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 30),
+               SizedBox(height: HeightManager.h30),
 
               // --- حقول إدخال بيانات البطاقة ---
               _buildTextField('cardholder name', _cardholderNameController),
-              const SizedBox(height: 20),
+               SizedBox(height: HeightManager.h20),
               _buildTextField('card number', _cardNumberController, keyboardType: TextInputType.number),
-              const SizedBox(height: 20),
+               SizedBox(height: HeightManager.h20),
               Row(
                 children: [
                   Expanded(
                     child: _buildTextField('Expiry date', _expiryDateController, keyboardType: TextInputType.datetime),
                   ),
-                  const SizedBox(width: 20),
+                   SizedBox(width: HeightManager.h20),
                   Expanded(
                     child: _buildTextField('cvc', _cvcController, keyboardType: TextInputType.number),
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
+               SizedBox(height: HeightManager.h30),
 
               // --- "select your pay ment" (مع Checkbox أو ما يعادله) ---
               // في التصميم، تبدو وكأنها Checkbox مع نص.
               Row(
                 children: [
                   Container( // مربع الأيقونة/checkbox
-                    width: 24,
-                    height: 24,
+                    width: WidthManager.w24,
+                    height: HeightManager.h24,
                     decoration: BoxDecoration(
                       color: _blueButtonColor, // لون مربع الأيقونة
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(BorderRadiusManager.br5),
                     ),
                     // يمكنك استبدال هذا بـ Checkbox إذا أردت وظائف حقيقية
                     // أو جعلها IconButton لإظهار/إخفاء تفاصيل الدفع المحفوظة.
                     // حاليًا، هي مجرد مربع لوني مطابق للتصميم.
                   ),
-                  const SizedBox(width: 10),
+                   SizedBox(width: WidthManager.w10),
                   Text(
-                    'select your pay ment',
+                    Utils.kselectyourpayment,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: FontSizeManger.f20,
                       fontWeight: FontWeight.bold,
                       color: _textColor,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 40),
+               SizedBox(height: HeightManager.h40),
 
               // --- مبلغ الدفع ---
               Align(
@@ -155,18 +164,18 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                 child: Text(
                   'payment amount $_paymentAmount',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: FontSizeManger.f22,
                     fontWeight: FontWeight.bold,
                     color: _textColor,
                   ),
                 ),
               ),
-              const SizedBox(height: 50),
+               SizedBox(height: HeightManager.h50),
 
               // --- زر "pay now" ---
               SizedBox(
                 width: double.infinity,
-                height: 60,
+                height: HeightManager.h60,
                 child: ElevatedButton(
                   onPressed: () {
                     // هذا هو التحكم الرئيسي لعملية الدفع
@@ -175,14 +184,14 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: _blueButtonColor, // لون خلفية الزر
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15), // حواف دائرية
+                      borderRadius: BorderRadius.circular(BorderRadiusManager.br15), // حواف دائرية
                     ),
                     elevation: 5, // ظل الزر
                   ),
-                  child: const Text(
-                    'pay now',
+                  child:  Text(
+                    Utils.kpaynow,
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: FontSizeManger.f22,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -209,12 +218,12 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
         filled: true,
         fillColor: _textFieldFillColor, // لون خلفية الحقل
         border: OutlineInputBorder( // شكل الحدود
-          borderRadius: BorderRadius.circular(15), // حواف دائرية
+          borderRadius: BorderRadius.circular(BorderRadiusManager.br15), // حواف دائرية
           borderSide: BorderSide.none, // إزالة حدود المربع (مبني على التصميم)
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18), // حشوة داخلية
+        contentPadding:  EdgeInsets.symmetric(horizontal: WidthManager.w20, vertical: HeightManager.h20), // حشوة داخلية
       ),
-      style: TextStyle(color: _textColor, fontSize: 18), // لون وحجم النص المدخل
+      style: TextStyle(color: _textColor, fontSize: FontSizeManger.f18), // لون وحجم النص المدخل
     );
   }
 
@@ -231,10 +240,10 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
       child: AnimatedContainer( // AnimatedContainer لتحريك التغييرات بسلاسة
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
-        padding: const EdgeInsets.all(10),
+        padding:  EdgeInsets.all(HeightManager.h10),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
+          color: ColorsManager.whiteColor,
+          borderRadius: BorderRadius.circular(BorderRadiusManager.br15),
           border: Border.all(
             color: _selectedPaymentMethod == methodType ? _primaryPurple : Colors.transparent, // حدود أرجوانية عند التحديد
             width: _selectedPaymentMethod == methodType ? 3.0 : 0.0, // سمك الحدود عند التحديد
@@ -249,8 +258,8 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
           ],
         ),
         child: isImage
-            ? Image.asset(imagePath, height: 50) // إذا كانت صورة شعار
-            : Image.asset(imagePath, height: 70), // إذا كانت صورة بطاقة كاملة أكبر
+            ? Image.asset(imagePath, height: HeightManager.h50) // إذا كانت صورة شعار
+            : Image.asset(imagePath, height: HeightManager.h70), // إذا كانت صورة بطاقة كاملة أكبر
         // يمكنك ضبط الارتفاعات لتناسب صورك
       ),
     );

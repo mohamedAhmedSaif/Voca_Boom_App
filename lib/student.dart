@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:voca_boom_app/charecter.dart';
+import 'package:voca_boom_app/letter_page.dart';
 import 'package:voca_boom_app/simple.dart';
 
 
-import 'card.dart';
+import 'payment_method_page.dart';
 void main() {
   runApp(const StudentApp());
 }

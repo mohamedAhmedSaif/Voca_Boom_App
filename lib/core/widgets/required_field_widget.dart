@@ -13,7 +13,9 @@ class RequiredFieldWidget extends StatelessWidget {
     required this.hintText,
     required this.controller,
     this.validator,
-    required this.visible,
+    this.visible = true,
+    this.suffixIcon,
+    this.onChanged,
   });
 
   final String title;
@@ -22,6 +24,8 @@ class RequiredFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final FormFieldValidator<String?>? validator;
   final bool visible;
+  final Widget? suffixIcon;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +43,8 @@ class RequiredFieldWidget extends StatelessWidget {
         SizedBox(height: HeightManager.h6),
 
         AppTextField(
+          onChanged: onChanged,
+          suffixIcon: suffixIcon,
           keyboardType: keyboardType,
           hintText: hintText,
           visible: visible,

@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'core/resources/border_radius_manager.dart';
+import 'core/resources/colors_manager.dart';
+import 'core/resources/font_manager.dart';
+import 'core/resources/height_manager.dart';
+import 'core/resources/utils.dart';
+import 'core/resources/width_manager.dart';
+
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
 
@@ -16,65 +23,65 @@ class ForgotPasswordPage extends StatelessWidget {
             Navigator.pop(context); // يرجع لـ Login
           },
         ),
-        title: const Text(
-          'Back',
-          style: TextStyle(color: Color(0xFF4a29dc), fontSize: 24),
+        title: Text(
+          Utils.kBack,
+          style: TextStyle(color: ColorsManager.primaryColor, fontSize: FontSizeManger.f24),
         ),
         centerTitle: false,
         titleSpacing: 0,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
+        padding:  EdgeInsets.symmetric(horizontal: WidthManager.w24, vertical: HeightManager.h20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Forgot Your Password ?',
+            Text(
+              Utils.kForgetPassword,
               style: TextStyle(
-                fontSize: 24,
+                fontSize: FontSizeManger.f24,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF4a29dc),
+                color:  ColorsManager.primaryColor,
               ),
             ),
-            const SizedBox(height: 10),
-            const Text(
-              'Please enter the email address associated with your account, and we\'ll send you OTP to reset your password.',
-              style: TextStyle(fontSize: 16, color: Colors.black54),
+             SizedBox(height: HeightManager.h10),
+             Text(
+             Utils.kPleaseEnterEmail,
+              style: TextStyle(fontSize: FontSizeManger.f16, color: ColorsManager.black54Color),
             ),
-            const SizedBox(height: 90),
+             SizedBox(height: HeightManager.h90),
             TextField(
               decoration: InputDecoration(
-                hintText: 'Enter your email address',
-                labelText: 'Email',
+                hintText:Utils.kEnterEmail,
+                labelText: Utils.kEmail,
                 filled: true,
                 fillColor: Colors.grey[100],
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(BorderRadiusManager.br10),
                   borderSide: BorderSide.none,
                 ),
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: 15.0,
-                  horizontal: 20.0,
+                contentPadding:  EdgeInsets.symmetric(
+                  vertical: WidthManager.w15,
+                  horizontal: HeightManager.h20,
                 ),
               ),
               keyboardType: TextInputType.emailAddress,
             ),
-            const SizedBox(height: 130),
+             SizedBox(height: HeightManager.h130),
             ElevatedButton(
               onPressed: () {
                 // Send code logic here
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF4a29dc),
-                padding: const EdgeInsets.symmetric(vertical: 15.0),
+                backgroundColor:  ColorsManager.primaryColor,
+                padding:  EdgeInsets.symmetric(vertical: HeightManager.h15),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(BorderRadiusManager.br10),
                 ),
                 minimumSize: const Size(double.infinity, 50),
               ),
-              child: const Text(
-                'Send Code',
-                style: TextStyle(fontSize: 18, color: Colors.white),
+              child:  Text(
+              Utils.kSendCode,
+                style: TextStyle(fontSize: FontSizeManger.f18, color: ColorsManager.whiteColor),
               ),
             ),
           ],

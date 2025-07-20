@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/resources/colors_manager.dart';
+import '../../../core/resources/font_manager.dart';
 import '../../../core/resources/utils.dart';
 
 class SignUpTitle extends StatelessWidget {
@@ -8,12 +10,13 @@ class SignUpTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-      const Text(
-        Utils.kSignUp,
+       Text(
+        Utils.kJoinUs,
         style: TextStyle(
-          fontSize: 32,//TODO make font size manager
+          fontSize: FontSizeManger.f38,
           fontWeight: FontWeight.bold,
-          color: Color(0xFF6A1B9A),//TODO put in color manager
+          color: ColorsManager.primaryColor,
+          fontFamily: FontFamilyName.otamaFontFamily,
         ),
       );
   }

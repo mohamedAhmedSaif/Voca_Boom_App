@@ -1,20 +1,29 @@
 // simple_sentences_page.dart
 import 'package:flutter/material.dart';
+import 'package:voca_boom_app/core/resources/assets_values_manger.dart';
+import 'package:voca_boom_app/core/resources/utils.dart';
+import 'package:voca_boom_app/core/widgets/app_logo_widget.dart';
+
+import 'core/resources/border_radius_manager.dart';
+import 'core/resources/colors_manager.dart';
+import 'core/resources/font_manager.dart';
+import 'core/resources/height_manager.dart';
+import 'core/resources/width_manager.dart';
 
 class SimpleSentencesPage extends StatelessWidget {
   const SimpleSentencesPage({super.key});
 
   // تعريف الألوان بناءً على التصميم الذي قدمته
-  static const Color _primaryPurple = Color(0xFF6A4CEE); // لون التدرج العلوي للخلفية
-  static const Color _secondaryBlue = Color(0xFF4C9EEE); // لون التدرج السفلي للخلفية
-  static const Color _greenButton = Color(0xFF4CAF50); // لون زر "I" و "She"
-  static const Color _orangeButton = Color(0xFFFF9800); // لون زر "You", "Go", "Eat"
-  static const Color _blueButton = Color(0xFF2196F3);   // لون زر "play", "Run"
-  static const Color _listItemBg = Colors.black45; // خلفية عناصر القائمة الشفافة
+  static const Color _primaryPurple = ColorsManager.blueColor; // لون التدرج العلوي للخلفية
+  static const Color _secondaryBlue = ColorsManager.lightBlu2eColor; // لون التدرج السفلي للخلفية
+  static const Color _greenButton = ColorsManager.lightGreenColor; // لون زر "I" و "She"
+  static const Color _orangeButton = ColorsManager.lightOrangeColor; // لون زر "You", "Go", "Eat"
+  static const Color _blueButton = ColorsManager.lightbluColor;   // لون زر "play", "Run"
+  static const Color _listItemBg = ColorsManager.black45Color; // خلفية عناصر القائمة الشفافة
 
   // تدرج زر "Try Quiz" السفلي
-  static const Color _buttonGradientStart = Color(0xFF6A4CEE);
-  static const Color _buttonGradientEnd = Color(0xFF4C9EEE);
+  static const Color _buttonGradientStart = ColorsManager.blueColor;
+  static const Color _buttonGradientEnd = ColorsManager.lightBlu2eColor;
 
   @override
   Widget build(BuildContext context) {
@@ -33,62 +42,59 @@ class SimpleSentencesPage extends StatelessWidget {
             children: [
               // --- الشريط العلوي (زر الرجوع، الشعار، أيقونة الصوت) ---
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                padding:  EdgeInsets.symmetric(horizontal: WidthManager.w20, vertical: HeightManager.h10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween, // توزيع العناصر بالتساوي مع مسافة بينها
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 28), // أيقونة الرجوع
+                      icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: FontSizeManger.f28), // أيقونة الرجوع
                       onPressed: () {
                         Navigator.pop(context); // للعودة للصفحة السابقة
                       },
                     ),
                     // شعار VocaBoom (تفترض وجود assets/vocaboom_logo_full.png)
                     // إذا لم يكن لديك هذا الشعار، يمكنك إزالته أو استبداله بنص
-                    Image.asset(
-                      'assets/images/logo.png', //
-                      height: 60,
-                    ),
+                    Image.asset(AssetsValuesManger.logo,height: HeightManager.h70,width: WidthManager.w60,),
                     IconButton(
-                      icon: const Icon(Icons.volume_up, color: Colors.white, size: 28), // أيقونة الصوت
+                      icon:  Icon(Icons.volume_up, color: Colors.white, size: FontSizeManger.f28), // أيقونة الصوت
                       onPressed: () {
-                        print('Sound icon pressed!'); // طباعة للتحقق، يمكن إضافة وظيفة تشغيل الصوت
+                        print(Utils.kSoundIcon); // طباعة للتحقق، يمكن إضافة وظيفة تشغيل الصوت
                       },
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 10), // مسافة بعد الشريط العلوي
+               SizedBox(height: HeightManager.h10), // مسافة بعد الشريط العلوي
 
               // --- عنوان "Simple Sentences" ---
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
+               Padding(
+                padding: EdgeInsets.symmetric(horizontal: WidthManager.w24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Simple Sentences',
+                      Utils.kSimpleSentences,
                       style: TextStyle(
-                        fontSize: 28,
+                        fontSize: FontSizeManger.f28,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: ColorsManager.whiteColor,
                       ),
                     ),
                     Text(
-                      'Speak & Understand',
+                      Utils.kSpeakUnderstand,
                       style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white70,
+                        fontSize: FontSizeManger.f18,
+                        color: ColorsManager.white70Color,
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 25),
+               SizedBox(height: HeightManager.h24),
 
               // --- الكلمات التفاعلية/الأزرار (Wrap للمرونة في التخطيط) ---
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding:  EdgeInsets.symmetric(horizontal: WidthManager.w20),
                 child: Wrap( // Wrap widget يسمح للعناصر بالالتفاف إلى السطر التالي إذا لم يكن هناك مساحة كافية
                   spacing: 10.0, // المسافة الأفقية بين الأزرار
                   runSpacing: 10.0, // المسافة الرأسية بين الصفوف
@@ -109,7 +115,7 @@ class SimpleSentencesPage extends StatelessWidget {
               // --- قائمة الجمل مع الصور الرمزية ---
               Expanded(
                 child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  padding:  EdgeInsets.symmetric(horizontal: WidthManager.w20),
                   itemCount: 3, // حسب تصميمك، هناك ثلاثة عناصر "I am happy"
                   itemBuilder: (context, index) {
                     String phrase;
@@ -124,23 +130,23 @@ class SimpleSentencesPage extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(height: 20),
+               SizedBox(height: HeightManager.h20),
 
               // --- قسم "Try a Situation" ---
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25.0),
+               Padding(
+                padding: EdgeInsets.symmetric(horizontal: WidthManager.w20),
                 child: Text(
-                  'Try a Situation',
+                  Utils.kTryASituation,
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: FontSizeManger.f22,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: ColorsManager.whiteColor,
                   ),
                 ),
               ),
-              const SizedBox(height: 15),
+               SizedBox(height: HeightManager.h20),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding:  EdgeInsets.symmetric(horizontal: WidthManager.w20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly, // توزيع الأزرار بالتساوي
                   children: [
@@ -150,16 +156,16 @@ class SimpleSentencesPage extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 30),
+               SizedBox(height: HeightManager.h30),
 
               // --- زر "Try Quiz" (في الأسفل) ---
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding:  EdgeInsets.all(HeightManager.h20),
                 child: Container(
                   width: double.infinity,
-                  height: 60,
+                  height: HeightManager.h60,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(BorderRadiusManager.br15),
                     gradient: const LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
@@ -177,22 +183,22 @@ class SimpleSentencesPage extends StatelessWidget {
                   child: Material(
                     color: Colors.transparent,
                     child: InkWell(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(BorderRadiusManager.br15),
                       onTap: () {
-                        print('Try Quiz button pressed on Sentences Page!'); // طباعة للتحقق
+                        print(Utils.kTryQuizButton); // طباعة للتحقق
                         // قم بتطبيق منطق التنقل إلى صفحة الاختبار هنا.
                       },
-                      child: const Center(
+                      child:  Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.quiz_outlined, color: Colors.white, size: 28),
-                            SizedBox(width: 10),
+                            Icon(Icons.quiz_outlined, color: ColorsManager.whiteColor, size: FontSizeManger.f28),
+                            SizedBox(width: WidthManager.w10),
                             Text(
-                              'Try Quiz',
+                              Utils.kTryQuiz,
                               style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
+                                color: ColorsManager.whiteColor,
+                                fontSize: FontSizeManger.f20,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -221,15 +227,15 @@ class SimpleSentencesPage extends StatelessWidget {
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: color, // لون خلفية الزر
-        foregroundColor: Colors.white, // لون النص
+        foregroundColor: ColorsManager.whiteColor, // لون النص
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10), // حواف دائرية
+          borderRadius: BorderRadius.circular(BorderRadiusManager.br10), // حواف دائرية
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12), // حشوة داخلية
+        padding: EdgeInsets.symmetric(horizontal: WidthManager.w20, vertical: HeightManager.h10), // حشوة داخلية
       ),
       child: Text(
         text,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: FontSizeManger.f18, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -238,29 +244,29 @@ class SimpleSentencesPage extends StatelessWidget {
   Widget _buildPhraseListItem(BuildContext context, String phrase, String avatarPath) {
     return Container( // حاوية لعنصر القائمة الفردي
       margin: const EdgeInsets.only(bottom: 15), // مسافة سفلية بين العناصر
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15), // حشوة داخلية
+      padding:  EdgeInsets.symmetric(vertical: HeightManager.h10, horizontal: WidthManager.w15), // حشوة داخلية
       decoration: BoxDecoration(
         color: _listItemBg, // خلفية داكنة شبه شفافة
-        borderRadius: BorderRadius.circular(15), // حواف دائرية
+        borderRadius: BorderRadius.circular(BorderRadiusManager.br15), // حواف دائرية
       ),
       child: Row( // صف لتنظيم عناصر داخل العنصر
         children: [
-          const Icon(Icons.check_circle_outline, color: Colors.greenAccent, size: 28), // أيقونة صح
-          const SizedBox(width: 15),
+          Icon(Icons.check_circle_outline, color: Colors.greenAccent, size: FontSizeManger.f28), // أيقونة صح
+          SizedBox(width: WidthManager.w15),
           Expanded( // Expanded لتمكين النص من أخذ المساحة المتاحة
             child: Text(
               phrase,
-              style: const TextStyle(color: Colors.white, fontSize: 18),
+              style:  TextStyle(color: ColorsManager.whiteColor, fontSize: FontSizeManger.f18),
             ),
           ),
-          const SizedBox(width: 10),
+           SizedBox(width: WidthManager.w10),
           CircleAvatar( // صورة رمزية دائرية
             radius: 20,
             backgroundImage: AssetImage(avatarPath), // مسار الصورة الرمزية
             backgroundColor: Colors.grey, // لون خلفية احتياطي
           ),
-          const SizedBox(width: 10),
-          const Icon(Icons.volume_up, color: Colors.white, size: 24), // أيقونة مكبر الصوت
+           SizedBox(width: WidthManager.w5),
+          Icon(Icons.volume_up, color: Colors.white, size: FontSizeManger.f24), // أيقونة مكبر الصوت
         ],
       ),
     );
@@ -270,16 +276,16 @@ class SimpleSentencesPage extends StatelessWidget {
   Widget _buildSituationButton(BuildContext context, String text, IconData icon, Color color) {
     return Expanded( // Expanded يجعل الزر يأخذ جزءًا متساوياً من المساحة في الصف
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 5), // مسافة أفقية صغيرة
-        height: 100, // ارتفاع ثابت
+        margin:  EdgeInsets.symmetric(horizontal: WidthManager.w10), // مسافة أفقية صغيرة
+        height: HeightManager.h100, // ارتفاع ثابت
         decoration: BoxDecoration(
           color: color, // لون خلفية الزر
-          borderRadius: BorderRadius.circular(15), // حواف دائرية
+          borderRadius: BorderRadius.circular(BorderRadiusManager.br15), // حواف دائرية
         ),
         child: Material(
           color: Colors.transparent,
           child: InkWell( // InkWell لتأثير النقر
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(BorderRadiusManager.br15),
             onTap: () {
               print('Situation "$text" pressed!'); // طباعة عند الضغط
               // هنا يمكنك إضافة منطق خاص بالموقف المحدد (مثل فتح شاشة جديدة).
@@ -287,12 +293,12 @@ class SimpleSentencesPage extends StatelessWidget {
             child: Column( // عمود لتنظيم الأيقونة والنص
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(icon, color: Colors.white, size: 30), // أيقونة الموقف
-                const SizedBox(height: 5),
+                Icon(icon, color: ColorsManager.whiteColor, size: FontSizeManger.f32), // أيقونة الموقف
+                 SizedBox(height: HeightManager.h5),
                 Text(
                   text,
                   textAlign: TextAlign.center, // توسيط النص إذا كان متعدد الأسطر
-                  style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                  style:  TextStyle(color: ColorsManager.whiteColor, fontSize: FontSizeManger.f16, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
