@@ -4,11 +4,11 @@ import 'package:voca_boom_app/core/resources/assets_values_manger.dart';
 import 'package:voca_boom_app/core/resources/utils.dart';
 import 'package:voca_boom_app/core/widgets/app_logo_widget.dart';
 
-import 'core/resources/border_radius_manager.dart';
-import 'core/resources/colors_manager.dart';
-import 'core/resources/font_manager.dart';
-import 'core/resources/height_manager.dart';
-import 'core/resources/width_manager.dart';
+import '../core/resources/border_radius_manager.dart';
+import '../core/resources/colors_manager.dart';
+import '../core/resources/font_manager.dart';
+import '../core/resources/height_manager.dart';
+import '../core/resources/width_manager.dart';
 
 class SimpleSentencesPage extends StatelessWidget {
   const SimpleSentencesPage({super.key});

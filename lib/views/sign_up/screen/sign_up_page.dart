@@ -17,7 +17,7 @@ import '../../../core/resources/utils.dart';
 import '../../login/screen/login_page.dart';
 
 // 👇 استيراد صفحة Home (تأكد من المسار الصحيح)
-import '../../../home.dart'; // غيّر المسار لو موجود في مكان تاني
+import '../../home.dart'; // غيّر المسار لو موجود في مكان تاني
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -225,9 +225,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        MaterialPageRoute(builder: (context) => Home()),
+                            (route) => false,
                       );
                     },
                     child: Text(

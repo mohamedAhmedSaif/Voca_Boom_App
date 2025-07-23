@@ -167,4 +167,31 @@ class Utils {
   ];
 
   static const String kJoinUs = 'Join Us';
+
+  static const String kCancel = 'Cancel';
+  static const String kOtpVerification = 'OTP Verification';
+  static const String kPleaseEnterYour4DigitCode = 'Please enter your 4-digit code sent to your number';
+  static const String kResendCode = 'Resend code in: 59:00';
+
+  static const String kEnterNewPassword = 'Enter new password';
+
+  static const String kCreateNewPassword = 'Create new password';
+
+  static const String kNewPassword = 'New Password';
+  static const String kPleaseAddAllNecessaryCharacters = "Please add all necessary characters to create safe password.";
+  static const String kOneNumber = "One number.";
+  static const String kOneSpecialCharacter = "One special character.";
+  static const String kOnelowercaseCharacter = "One lowercase character.";
+  static const String kOneluppercaseCharacter = "One uppercase character.";
+  static const String kMinimumCharacters = "Minimum characters: 12";
+
+  static const String kConfirm = 'Confirm';
+
+  static const String kHelloTeacher = 'Hello Teacher';
+
+  static const String kchoose = 'Choose:';
+
+  static const String kCreateQuiz = 'Create Quiz';
+
+  static const String kUploadvideo = 'Upload Video';
 }

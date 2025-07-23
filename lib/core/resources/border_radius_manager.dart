@@ -10,4 +10,6 @@ class BorderRadiusManager{
   static   double br30=30.0.r;
 
   static double br20=20.0.r;
+
+  static double br12=12.0.r;
 }

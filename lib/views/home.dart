@@ -3,12 +3,14 @@ import 'package:voca_boom_app/core/resources/colors_manager.dart';
 import 'package:voca_boom_app/core/resources/height_manager.dart';
 import 'package:voca_boom_app/core/widgets/Image.dart';
 import 'package:voca_boom_app/core/widgets/app_logo_widget.dart';
-import 'package:voca_boom_app/student.dart';
+import 'package:voca_boom_app/views/Courses_or_ai.dart';
+import 'package:voca_boom_app/views/student.dart';
 
-import 'core/resources/border_radius_manager.dart';
-import 'core/resources/font_manager.dart';
-import 'core/resources/utils.dart';
-import 'core/resources/width_manager.dart';
+import '../core/resources/border_radius_manager.dart';
+import '../core/resources/font_manager.dart';
+import '../core/resources/utils.dart';
+import '../core/resources/width_manager.dart';
+import 'Teacher_Page.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -129,7 +131,7 @@ class WelcomeScreen extends StatelessWidget {
                             context: context,
                             text: Utils.kTeacher,
                             onPressed: () {
-                              // Add teacher navigation here
+                             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const TeacherPage()), (route)=> false); // Add teacher navigation here
                             },
                             gradientColors: const [
                               primaryPurple,
@@ -155,7 +157,7 @@ class WelcomeScreen extends StatelessWidget {
                               Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const StudentApp(),
+                                  builder: (context) => const CoursesOrAi(),
                                 ),(route) => true,
                               );
                             },

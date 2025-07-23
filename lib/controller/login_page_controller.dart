@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:voca_boom_app/views/sign_up/screen/sign_up_page.dart';
 
 import '../core/resources/utils.dart';
-import '../forget.dart';
-import '../home.dart';
+import '../views/forget.dart';
+import '../views/home.dart';
 
 class LoginPageController {
   late TextEditingController emailController;

@@ -18,6 +18,8 @@ class FontSizeManger {
 
   static double f9 = 9.sp;
 
+  static double f100 = 100.sp;
+
 
 }
 

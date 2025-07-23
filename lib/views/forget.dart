@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'core/resources/border_radius_manager.dart';
-import 'core/resources/colors_manager.dart';
-import 'core/resources/font_manager.dart';
-import 'core/resources/height_manager.dart';
-import 'core/resources/utils.dart';
-import 'core/resources/width_manager.dart';
+import '../core/resources/border_radius_manager.dart';
+import '../core/resources/colors_manager.dart';
+import '../core/resources/font_manager.dart';
+import '../core/resources/height_manager.dart';
+import '../core/resources/utils.dart';
+import '../core/resources/width_manager.dart';
+import 'otp-verefication-screen.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
@@ -69,7 +70,7 @@ class ForgotPasswordPage extends StatelessWidget {
              SizedBox(height: HeightManager.h130),
             ElevatedButton(
               onPressed: () {
-                // Send code logic here
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const OTPVerificationScreen()) );// Send code logic here
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor:  ColorsManager.primaryColor,

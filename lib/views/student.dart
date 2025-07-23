@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:voca_boom_app/letter_page.dart';
-import 'package:voca_boom_app/simple.dart';
+import 'package:voca_boom_app/core/widgets/app_logo_widget.dart';
+import 'package:voca_boom_app/views/Courses_or_ai.dart';
+import 'package:voca_boom_app/views/letter_page.dart';
+import 'package:voca_boom_app/views/simple.dart';
 
 
+import '../core/resources/colors_manager.dart';
 import 'payment_method_page.dart';
-void main() {
-  runApp(const StudentApp());
-}
+
 
 class StudentApp extends StatelessWidget {
   const StudentApp({super.key});
@@ -15,6 +16,7 @@ class StudentApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       title: 'VocaBoom Courses',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -43,6 +45,7 @@ class CourseSelectionScreen extends StatelessWidget {
     ];
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -57,16 +60,20 @@ class CourseSelectionScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
+
+                   Align(alignment: Alignment.bottomLeft,
+                     child: IconButton(
+                                     icon: const Icon(Icons.arrow_back, color: ColorsManager.blackColor),
+                                     onPressed: () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => CoursesOrAi()), (route) => false)
+                                   ),
+                   )
+                 ,
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
                     Center(
-                        child: Image.asset(
-                          "assets/images/logo.png",
-                          height: 100,
-                          width: 100,
-                        )),
+                        child:AppLogoWidget()),
                     const SizedBox(height: 20),
                     const Text(
                       'Choose Your Course',

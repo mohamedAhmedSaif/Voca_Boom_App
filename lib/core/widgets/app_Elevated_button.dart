@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../forget.dart';
+import '../../views/forget.dart';
 import '../resources/border_radius_manager.dart';
 import '../resources/colors_manager.dart';
 import '../resources/font_manager.dart';

@@ -6,9 +6,10 @@ import 'package:voca_boom_app/core/resources/height_manager.dart';
 import 'package:voca_boom_app/core/resources/utils.dart';
 import 'package:voca_boom_app/core/widgets/app_logo_widget.dart';
 
-import 'core/resources/border_radius_manager.dart';
-import 'core/resources/width_manager.dart';
-import 'core/widgets/Image.dart';
+import '../core/resources/border_radius_manager.dart';
+import '../core/resources/width_manager.dart';
+import '../core/widgets/Image.dart';
+import 'Confirm_Payment.dart';
 
 class PaymentMethodPage extends StatefulWidget {
   const PaymentMethodPage({super.key});
@@ -305,6 +306,6 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
     );
 
     // بعد الدفع الناجح، يمكنك الانتقال إلى صفحة تأكيد أو العودة للصفحة الرئيسية
-    // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SuccessPage()));
+     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ConfirmPaymentPage()));
   }
 }
